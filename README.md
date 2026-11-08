@@ -11,7 +11,7 @@ uvicorn app.main:app --reload    # localhost:8000/docs
   POST /forecast {"shop_id": 1, "product_id": 3}
   POST /forecast {"shop_id": 1, "product_id": 3, "promo": [0,0,1,1,0,0,0]}   # what-if
 
-## Company te ja ja use hoy (ei project e ache)
+## Company te ja ja use hoy (ei project e ache) ##
 - Time series e random split KOKHONO na: shomoy onujayi split + expanding-window backtest
 - Baseline age (seasonal naive, moving average), ML model oder cheye bhalo kina dekha
 - Leakage-safe feature: lag shurur 7 din theke, test diye prove kora (tests/test_forecast.py)
