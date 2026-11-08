@@ -20,7 +20,7 @@ uvicorn app.main:app --reload    # localhost:8000/docs
 - Prediction interval (quantile regression 10%-90%) + coverage check
 - What-if forecast (promo plan dile forecast kemon bodlay)
 
-## Shimabodhdhota
+## Shimabodhdhota ##
 Shudhu 7 din agey porjonto forecast kore (lag 7 theke). Ar boro horizon dorkar hole recursive
 forecast ba alada model lagbe.
 
