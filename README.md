@@ -24,7 +24,7 @@ uvicorn app.main:app --reload    # localhost:8000/docs
 Shudhu 7 din agey porjonto forecast kore (lag 7 theke). Ar boro horizon dorkar hole recursive
 forecast ba alada model lagbe.
 
-## Challenge
+## Challenge ##
 1. LightGBM/XGBoost try koro
 2. Notun product (history nai) er jonno cold-start forecast
 3. Holiday list ke real data diye replace koro
