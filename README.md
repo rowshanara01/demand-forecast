@@ -4,7 +4,7 @@ Dokan ba company agami 7 din e koto bikri hobe seta age theke bole dey. Stock, s
 
 ## Chalanor niyom ##
 pip install -r requirements.txt
-python generate_data.py          # 3 shop x 5 product x 3 bochor daily sales
+python generate_data.py          #### 3 shop x 5 product x 3 bochor daily sales
 python train.py                  # backtest + final test + interval + feature importance
 pytest -q
 uvicorn app.main:app --reload    # localhost:8000/docs
