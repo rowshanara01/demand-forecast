@@ -9,7 +9,7 @@ pip install -r requirements.txt
 python generate_data.py          # 3 shops x 5 products x 3 years of daily sales
 python train.py                  # backtest + final test + interval + feature importance
 pytest -q
-uvicorn app.main:app --reload    # localhost:8000/docs
+uvicorn app.main:app --reload    # localhost:8000/docs run
 ```
 
 Example API requests:
