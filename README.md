@@ -1,4 +1,4 @@
-# Demand Forecasting (Sales Prediction)
+#### Demand Forecasting (Sales Prediction) ####
 
 Predicts how much a shop or company will sell over the next 7 days, so you can plan stock, staffing and supply ahead of time.
 
