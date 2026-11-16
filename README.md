@@ -1,33 +1,43 @@
-#### Demand Forecasting (Sales Prediction) #####
+# Demand Forecasting (Sales Prediction)
 
-Dokan ba company agami 7 din e koto bikri hobe seta age theke bole dey. Stock, staff, supply plan er jonno.
+Predicts how much a shop or company will sell over the next 7 days, so you can plan stock, staffing and supply ahead of time.
 
-#### Chalanor niyom ####
+## How to Run
+
+```bash
 pip install -r requirements.txt
-python generate_data.py          #### 3 shop x 5 product x 3 bochor daily sales
+python generate_data.py          # 3 shops x 5 products x 3 years of daily sales
 python train.py                  # backtest + final test + interval + feature importance
 pytest -q
 uvicorn app.main:app --reload    # localhost:8000/docs
-  POST /forecast {"shop_id": 1, "product_id": 3}
-  POST /forecast {"shop_id": 1, "product_id": 3, "promo": [0,0,1,1,0,0,0]}   # what-if
+```
 
-#### Company te ja ja use hoy (ei project e ache) ####
-- Time series e random split KOKHONO na: shomoy onujayi split + expanding-window backtest
-- Baseline age (seasonal naive, moving average), ML model oder cheye bhalo kina dekha
-- Leakage-safe feature: lag shurur 7 din theke, test diye prove kora (tests/test_forecast.py)
-- Calendar feature: Eid, chhutir din, Eid er age kenakata
-- Poisson loss (bikri = gonona-joggo shonkha), WAPE metric
-- Prediction interval (quantile regression 10%-90%) + coverage check
-- What-if forecast (promo plan dile forecast kemon bodlay)
+Example API requests:
 
-#### Shimabodhdhota ####
-Shudhu 7 din agey porjonto forecast kore (lag 7 theke). Ar boro horizon dorkar hole recursive
-forecast ba alada model lagbe.
+```http
+POST /forecast {"shop_id": 1, "product_id": 3}
+POST /forecast {"shop_id": 1, "product_id": 3, "promo": [0,0,1,1,0,0,0]}   # what-if
+```
 
-#### Challenge ####
-1. LightGBM/XGBoost try koro
-2. Notun product (history nai) er jonno cold-start forecast
-3. Holiday list ke real data diye replace koro
-4. Hierarchical forecast: shob shop er sum ar alada shop forecast jeno mile
-5. Forecast error monitor koro (actual ashle forecast er sathe tulona), error baralei alert
-6. Stock reorder point calculator: forecast + interval theke safety stock
+## What Companies Use in Practice (and This Project Includes)
+
+- **Never use a random split on time series.** Split by time and use an expanding-window backtest.
+- **Baselines first** (seasonal naive, moving average) to check whether the ML model actually beats them.
+- **Leakage-safe features:** lags start from 7 days back, and this is proven by a test (`tests/test_forecast.py`).
+- **Calendar features:** Eid, public holidays, and pre-Eid shopping rush.
+- **Poisson loss**, since sales are a count, and **WAPE** as the metric.
+- **Prediction intervals** (10%-90% quantile regression) with a coverage check.
+- **What-if forecasts:** see how the forecast changes when you supply a promo plan.
+
+## Limitations
+
+The model only forecasts up to 7 days ahead (because lags start at 7). For a longer horizon you would need recursive forecasting or a separate model per horizon.
+
+## Challenges
+
+1. Try LightGBM / XGBoost.
+2. Cold-start forecasting for new products with no history.
+3. Replace the holiday list with real data.
+4. Hierarchical forecasting: make the sum of all shops reconcile with the individual shop forecasts.
+5. Monitor forecast error (compare against actuals as they arrive) and alert when error rises.
+6. Build a stock reorder-point calculator: derive safety stock from the forecast and its interval.
