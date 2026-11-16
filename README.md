@@ -29,7 +29,7 @@ POST /forecast {"shop_id": 1, "product_id": 3, "promo": [0,0,1,1,0,0,0]}   # wha
 - **Prediction intervals** (10%-90% quantile regression) with a coverage check.
 - **What-if forecasts:** see how the forecast changes when you supply a promo plan.
 
-## Limitations
+## Limitations ##
 
 The model only forecasts up to 7 days ahead (because lags start at 7). For a longer horizon you would need recursive forecasting or a separate model per horizon.
 
