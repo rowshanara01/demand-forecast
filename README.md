@@ -19,7 +19,7 @@ POST /forecast {"shop_id": 1, "product_id": 3}
 POST /forecast {"shop_id": 1, "product_id": 3, "promo": [0,0,1,1,0,0,0]}   # what-if
 ```
 
-## What Companies Use in Practice (and This Project Includes)
+## What Companies Use in Practice (and This Project Includes) ##
 
 - **Never use a random split on time series.** Split by time and use an expanding-window backtest.
 - **Baselines first** (seasonal naive, moving average) to check whether the ML model actually beats them.
