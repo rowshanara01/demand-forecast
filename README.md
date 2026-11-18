@@ -33,7 +33,7 @@ POST /forecast {"shop_id": 1, "product_id": 3, "promo": [0,0,1,1,0,0,0]}   # wha
 
 The model only forecasts up to 7 days ahead (because lags start at 7). For a longer horizon you would need recursive forecasting or a separate model per horizon.
 
-## What Companies Use in Practice ##
+#### What Companies Use in Practice ####
 
 1. Try LightGBM / XGBoost.
 2. Cold-start forecasting for new products with no history.
