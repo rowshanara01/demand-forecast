@@ -2,7 +2,7 @@
 
 Predicts how much a shop or company will sell over the next 7 days, so you can plan stock, staffing and supply ahead of time.
 
-## do to Run ##
+#### do to Run ####
 
 ```bash
 pip install -r requirements.txt
